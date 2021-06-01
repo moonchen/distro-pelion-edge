@@ -8,7 +8,7 @@ ARG LOCAL_SRC_PATH=./docker-ubuntu-20-focal
 RUN groupadd -o --gid $GROUP_ID user
 RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
 RUN usermod -aG sudo user
-RUN addgroup --gid $DOCKER_GROUP_ID docker
+RUN addgroup --gid $DOCKER_GROUP_ID docker || true
 RUN usermod -aG docker user
 
 RUN echo "APT::Acquire::Retries \"3\";" > /etc/apt/apt.conf.d/80-retries
