@@ -6,6 +6,11 @@ name: build dev branch
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+        ref:
+          description: 'ref to build'
+          required: true
+          default: dev
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,7 +24,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
-          ref: dev
+          ref: ${{ github.event.inputs.ref }}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
